@@ -1,0 +1,8 @@
+#!/bin/bash
+if [ "$1" == "" ]; then
+  echo "First argument should be the slack user token.";
+  exit;
+fi
+docker build -t slack .;
+CMD="docker run -t -e SLACK_USER_TOKEN=${1} slack python3 ./RTM.py";
+eval $CMD
